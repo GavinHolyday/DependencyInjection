@@ -4,15 +4,23 @@
     {
         Guid id;
         private readonly IServiceProvider _serviceProvider;
-        public SingletonService(ITransientService transientService, IServiceProvider serviceProvider)
+        private readonly ITransientService _transientServiceFromConstructor;
+        public SingletonService(
+            ITransientService transientService,
+            IServiceProvider serviceProvider)
         {
-            id = Guid.NewGuid();
             _serviceProvider = serviceProvider;
+            _transientServiceFromConstructor = transientService;
         }
-        public Guid GetId()
+        public Guid GetIdFromProvider()
         {
-            var transientService = _serviceProvider.GetService<ITransientService>();
-            return transientService.GetId();
+            var transientServiceFromProvider = _serviceProvider.GetService<ITransientService>();
+            return transientServiceFromProvider.GetId();
+        }
+
+        public Guid GetIdFromConstructor()
+        {
+            return _transientServiceFromConstructor.GetId();
         }
     }
 }

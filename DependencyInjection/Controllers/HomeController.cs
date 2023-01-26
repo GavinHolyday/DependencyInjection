@@ -7,21 +7,19 @@ namespace DependencyInjection.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ISingletonService _singletonService;
-        private readonly ITransientService _transientService;
 
         public HomeController(
             ILogger<HomeController> logger,
-            ISingletonService singletonService,
-            ITransientService transientService)
+            ISingletonService singletonService)
         {
             _logger = logger;
             _singletonService = singletonService;
-            _transientService = transientService;
         }
 
         public IActionResult Index()
         {
-            ViewBag.TransientInSingleton = "Transient In Singleton " + _singletonService.GetId().ToString();
+            ViewBag.TransientInSingletonFromConstructor = "Transient In Singleton From Constructor " + _singletonService.GetIdFromConstructor().ToString();
+            ViewBag.TransientInSingletonFromProvider = "Transient In Singleton From Provider " + _singletonService.GetIdFromProvider().ToString();
             return View();
         }
     }
