@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<ISingletonService, SingletonService>();
 builder.Services.AddTransient<ITransientService, TransientService>();
-
+builder.Services.AddSingleton<Func<ITransientService>>(x => () => x.GetRequiredService<ITransientService>());
 
 var app = builder.Build();
 

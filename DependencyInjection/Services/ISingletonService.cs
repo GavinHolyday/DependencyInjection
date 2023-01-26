@@ -2,7 +2,7 @@
 {
     public interface ISingletonService
     {
-        Guid GetIdFromProvider();
+        Guid GetIdFromFactory();
         Guid GetIdFromConstructor();
     }
 }

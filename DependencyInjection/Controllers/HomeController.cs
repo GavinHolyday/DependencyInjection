@@ -19,7 +19,7 @@ namespace DependencyInjection.Controllers
         public IActionResult Index()
         {
             ViewBag.TransientInSingletonFromConstructor = "Transient In Singleton From Constructor " + _singletonService.GetIdFromConstructor().ToString();
-            ViewBag.TransientInSingletonFromProvider = "Transient In Singleton From Provider " + _singletonService.GetIdFromProvider().ToString();
+            ViewBag.TransientInSingletonFromFactory = "Transient In Singleton From Factory " + _singletonService.GetIdFromFactory().ToString();
             return View();
         }
     }
